@@ -1,0 +1,205 @@
+body
+{
+
+
+	margin:							0;
+	padding:						0;
+}
+
+#SiteHeader
+{
+	text-align:  					right;
+	color:							#eee;
+
+	background-color:				#111;
+
+	border-top: 	 				solid 0.01em #222;
+	border-bottom:  				solid 0.01em #000;
+}
+
+#interactiveHeader
+{
+	display: 						inline-block;
+	font-family:					monospace;
+	float: 							left;
+	text-align:  					left;
+
+	margin:							0;
+	padding:						0;
+
+	margin-top: 					0.5em;
+	margin-left: 					1em;
+}
+
+#siteBase > header  h1
+{
+	margin:							0;
+	padding:						0;
+
+	margin-bottom: 					-1.2em;
+}
+
+#interactiveHeader #headerCLI
+{
+	color:							transparent;
+    text-shadow: 					0px 0px 0px #eee;
+	font-family:					monospace;
+	font-size:  					2em;
+    font-weight: 					bold;
+
+	background-color:  				transparent;
+	border: 						none;
+
+	margin-left: 					6.4em;
+	width: 							100%;
+	width: 							calc(100% - 7em);
+}
+
+#interactiveHeader #titleCursor
+{
+	font-family:					monospace;
+    font-weight: 					bold;
+}
+.blink {
+  animation: blink-animation 1.25s steps(2, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+
+#globalNav
+{
+	font-family:					sans-serif;
+	vertical-align:  				middle;
+	clear:							right;
+
+	font-size:  					0.75em;
+
+	display: 						inline-block;
+
+}
+
+#globalNav > ul
+{
+	display: 						inline-block;
+
+}
+
+#globalNav > img
+{
+	float:							right;
+
+	width:							9em;
+
+	margin-left: 					-15em;
+	margin-top: 					0.75em;
+}
+
+.sideNav ul
+{
+	margin:							0;
+	padding:						0em;
+}
+
+.sideNav span
+{
+	display: 						inline-block;
+
+	padding:						0.75em;
+	padding-bottom:					0.75em;
+	margin:							0;
+}
+
+.sideNav li
+{
+	display: 						inline-block;
+
+	margin:							0;
+
+	padding:						0 0.5em 0.5em 0.5em;
+
+	border-bottom:					solid 0.1em #eee;
+
+	padding-bottom:						0.4em;
+
+
+    transition:         all 80ms cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+
+.sideNav .active
+{
+	color:							#111;
+
+	background-color:				#bbb;
+}
+.sideNav .active li
+{
+	border-bottom:					solid 0.1em #111;
+}
+.sideNav . li
+{
+	border-bottom:					solid 0.3em #222;
+
+	padding-bottom:						0.3em;
+	margin-bottom:						-0.1em;
+}
+
+.sideNav li:hover
+{
+
+	padding-bottom:						0.3em;
+	margin-bottom:						-0.1em;
+
+	border-bottom-width: 				0.3em;
+}
+
+.sideNav li:last-child
+{
+
+	border-right:					none;
+}
+
+
+#content
+{
+	padding:						0 2em;
+}
+
+#contentTitle
+{
+	font-size:  					2em;
+
+	text-align:  					center;
+
+}
+
+
+/* ------------------------- Layout -------------------------  */
+
+
+#contentLeft
+{
+	float:							left;
+	width:							14em;
+
+	margin-right: 					-15em;
+}
+
+#contentPrimary
+{
+	float:							left;
+
+	margin-left: 					15em;
+	margin-right: 					15em;
+}
+
+#contentRight
+{
+	float:							right;
+	width:							14em;
+
+	margin-left: 					-15em;
+}

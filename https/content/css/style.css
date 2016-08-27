@@ -1,0 +1,82 @@
+@import url('SiteHeader.css');
+@import url('BaseItem.css');
+@import url('CodeInsert.css');
+
+body
+{
+	color:				#eee;
+	background-color:		#222;
+
+	margin:				0;
+	padding:			0;
+}
+
+
+#siteBase > header  h1
+{
+	margin:				0;
+	padding:			0;
+
+	margin-bottom: 			-1.2em;
+}
+
+#content
+{
+	padding:			0 2em;
+}
+
+#contentTitle
+{
+	font-size:  			2em;
+
+	text-align:  			center;
+
+}
+
+#contentLeft
+{	
+	background-color:		#111;
+}
+
+#contentRight
+{
+	background-color:		#111;
+
+	padding-left:			2em;
+	margin-top:			2em;
+}
+
+/* ------------------------- Layout -------------------------  */
+
+
+#contentLeft
+{
+	float:				left;
+	width:				14em;
+
+	margin-right: 			-15em;
+}
+
+#contentPrimary
+{	
+	float:				left;
+	position:			relative;
+
+	margin-left: 			15em;
+	margin-right: 			15em;
+
+	z-index:			100;
+}
+
+#contentRight
+{
+	float:				right;
+	clear:				right;
+	position:			fixed;
+	width:				14em;
+
+	right:				2em;
+/*	margin-left: 			-17em;*/
+	
+	z-index:			20;
+}

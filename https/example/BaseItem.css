@@ -1,0 +1,25 @@
+.BaseItem
+{
+	background-color:		#171717;
+
+	border:				solid 0.05em #272727;	
+	box-shadow:			0em 0em 1.25em -0.5em #000,
+					0em 0em 0.05em 0.05em #000;
+}
+
+
+.BaseItem p,
+.BaseItem h3
+{
+	margin:				2em;
+}
+
+.BaseItem img
+{
+	width:				100%;
+}
+
+.BaseItem h3:first-child
+{
+	margin-top:			2em;
+}
