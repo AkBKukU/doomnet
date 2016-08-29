@@ -20,9 +20,9 @@ DROP TABLE IF EXISTS `wads`;
 CREATE TABLE `wads` (
   `id_wad` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   `id_doom_version` INTEGER NOT NULL DEFAULT NULL,
-  `date_added` TIMESTAMP NULL DEFAULT NULL,
+  `date_added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `wad_name` VARCHAR(256) NULL DEFAULT NULL,
-  `txt` MEDIUMTEXT NULL DEFAULT NULL,
+  `txt` TEXT NULL DEFAULT NULL,
   `md5` VARCHAR(32) NULL DEFAULT NULL,
   PRIMARY KEY (`id_wad`),
 KEY (`id_doom_version`)
@@ -37,7 +37,7 @@ DROP TABLE IF EXISTS `users`;
 		
 CREATE TABLE `users` (
   `id_user` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `date_joined` TIMESTAMP NOT NULL DEFAULT 'NULL',
+  `date_joined` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `username` VARCHAR(64) NULL DEFAULT NULL,
   `password` VARCHAR(512) NULL DEFAULT NULL,
   `displayname` VARCHAR(64) NOT NULL,
@@ -55,11 +55,11 @@ CREATE TABLE `wads_played` (
   `id_wad_instance` INTEGER NULL DEFAULT NULL,
   `id_user` INTEGER NULL DEFAULT NULL,
   `id_wad` INTEGER NULL DEFAULT NULL,
-  `submitted` TIMESTAMP NULL DEFAULT NULL,
+  `submitted` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `rating` INTEGER NULL DEFAULT NULL,
   `coop_rating` INTEGER NULL DEFAULT NULL,
-  `notes` MEDIUMTEXT NULL DEFAULT NULL,
-  `hints` MEDIUMTEXT NULL DEFAULT NULL,
+  `notes` TEXT NULL DEFAULT NULL,
+  `hints` TEXT NULL DEFAULT NULL,
   `beatable` INTEGER NULL DEFAULT NULL,
   UNIQUE KEY (`id_user`, `id_wad`)
 ) COMMENT 'Information provided by the user about the play session.';
@@ -129,7 +129,7 @@ DROP TABLE IF EXISTS `group_members`;
 CREATE TABLE `group_members` (
   `id_user` INTEGER NULL DEFAULT NULL,
   `id_group` INTEGER NULL DEFAULT NULL,
-  `date_joined` TIMESTAMP NOT NULL DEFAULT 'NULL',
+  `date_joined` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   UNIQUE KEY (`id_group`, `id_user`)
 );
 
@@ -145,7 +145,7 @@ CREATE TABLE `wad_instance` (
   `id_group_started` INTEGER NULL DEFAULT NULL,
   `id_wad` INTEGER NULL DEFAULT NULL,
   `id_engine` INTEGER NULL DEFAULT NULL,
-  `date_run` TIMESTAMP NULL DEFAULT NULL,
+  `date_run` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `difficulty` INTEGER NULL DEFAULT NULL,
   PRIMARY KEY (`id_wad_instance`)
 ) COMMENT 'The instance information from the wad being loaded into the ';
@@ -157,24 +157,7 @@ CREATE TABLE `wad_instance` (
 
 DROP TABLE IF EXISTS `screenshots`;
 		
-CREATE TABLE `screenshots` (
-  `id_screenshot` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `id_wad_instance` INTEGER NULL DEFAULT NULL,
-  `id_user` INTEGER NULL DEFAULT NULL,
-  `filename` VARCHAR(256) NULL DEFAULT NULL,
-  `comment` MEDIUMTEXT NULL DEFAULT NULL,
-  PRIMARY KEY (`id_screenshot`)
-);
-
--- ---
--- Table 'wad_levels'
--- Levels that the wad has as stated by players. Without looking into the wad manually there is no way to know what levels it uses.
--- ---
-
-DROP TABLE IF EXISTS `wad_levels`;
-		
-CREATE TABLE `wad_levels` (
-  `id_wad` INTEGER NULL DEFAULT NULL,
+CREATE TABLE `screenshots` (x
   `id_map` INTEGER NULL DEFAULT NULL,
   UNIQUE KEY (`id_wad`, `id_map`)
 ) COMMENT 'Levels that the wad has as stated by players. Without lookin';
@@ -186,9 +169,9 @@ CREATE TABLE `wad_levels` (
 
 DROP TABLE IF EXISTS `wadset`;
 		
-CREATE TABLE `wadset` (
+CREATE TABLE `xwadset` (
   `id_wadset` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `date_added` TIMESTAMP NULL DEFAULT NULL,
+  `date_added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `name` VARCHAR(256) NULL DEFAULT NULL,
   PRIMARY KEY (`id_wadset`)
 );
