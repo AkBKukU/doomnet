@@ -1,4 +1,4 @@
-/*                                                                           *\
+/*																																					 *\
 ______________________________Patch Information________________________________
 
 Description: Initial database creation
@@ -6,7 +6,7 @@ Data Integrity: Destroy All
 
 Required: Yes
 
-\*                                                                           */
+\*																																					 */
 
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -18,13 +18,13 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `wads`;
 		
 CREATE TABLE `wads` (
-  `id_wad` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `id_doom_version` INTEGER NULL DEFAULT NULL,
-  `date_added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `wad_name` VARCHAR(256) NULL DEFAULT NULL,
-  `txt` TEXT NULL DEFAULT NULL,
-  `md5` VARCHAR(32) NULL DEFAULT NULL,
-  PRIMARY KEY (`id_wad`),
+	`id_wad` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+	`id_doom_version` INTEGER NULL DEFAULT NULL,
+	`date_added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`wad_name` VARCHAR(256) NULL DEFAULT NULL,
+	`txt` TEXT NULL DEFAULT NULL,
+	`md5` VARCHAR(32) NULL DEFAULT NULL,
+	PRIMARY KEY (`id_wad`),
 KEY (`id_doom_version`)
 ) COMMENT 'The files containing the levels to be played';
 
@@ -36,12 +36,12 @@ KEY (`id_doom_version`)
 DROP TABLE IF EXISTS `users`;
 		
 CREATE TABLE `users` (
-  `id_user` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `date_joined` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `username` VARCHAR(64) NULL DEFAULT NULL,
-  `password` VARCHAR(512) NULL DEFAULT NULL,
-  `displayname` VARCHAR(64) NOT NULL,
-  PRIMARY KEY (`id_user`)
+	`id_user` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+	`date_joined` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`username` VARCHAR(64) NULL DEFAULT NULL,
+	`password` VARCHAR(512) NULL DEFAULT NULL,
+	`displayname` VARCHAR(64) NOT NULL,
+	PRIMARY KEY (`id_user`)
 );
 
 -- ---
@@ -52,30 +52,30 @@ CREATE TABLE `users` (
 DROP TABLE IF EXISTS `wads_played`;
 		
 CREATE TABLE `wads_played` (
-  `id_wad_instance` INTEGER NULL DEFAULT NULL,
-  `id_user` INTEGER NULL DEFAULT NULL,
-  `id_wad` INTEGER NULL DEFAULT NULL,
-  `submitted` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `rating` INTEGER NULL DEFAULT NULL,
-  `coop_rating` INTEGER NULL DEFAULT NULL,
-  `notes` TEXT NULL DEFAULT NULL,
-  `hints` TEXT NULL DEFAULT NULL,
-  `beatable` INTEGER NULL DEFAULT NULL,
-  UNIQUE KEY (`id_user`, `id_wad`)
+	`id_wad_instance` INTEGER NULL DEFAULT NULL,
+	`id_user` INTEGER NULL DEFAULT NULL,
+	`id_wad` INTEGER NULL DEFAULT NULL,
+	`submitted` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`rating` INTEGER NULL DEFAULT NULL,
+	`coop_rating` INTEGER NULL DEFAULT NULL,
+	`notes` TEXT NULL DEFAULT NULL,
+	`hints` TEXT NULL DEFAULT NULL,
+	`beatable` INTEGER NULL DEFAULT NULL,
+	UNIQUE KEY (`id_user`, `id_wad`)
 ) COMMENT 'Information provided by the user about the play session.';
 
 -- ---
 -- Table 'doom_versions'
--- Data will be:  1. Doom 2. Doom 2 3. Hexen 4. Heretic 5. Strife 6. Other
+-- Data will be:	1. Doom 2. Doom 2 3. Hexen 4. Heretic 5. Strife 6. Other
 -- ---
 
 DROP TABLE IF EXISTS `doom_versions`;
 		
 CREATE TABLE `doom_versions` (
-  `id_doom_version` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `name` VARCHAR(64) NULL DEFAULT NULL,
-  PRIMARY KEY (`id_doom_version`)
-) COMMENT 'Data will be:  1. Doom 2. Doom 2 3. Hexen 4. Heretic 5. Stri';
+	`id_doom_version` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+	`name` VARCHAR(64) NULL DEFAULT NULL,
+	PRIMARY KEY (`id_doom_version`)
+) COMMENT 'Data will be:	1. Doom 2. Doom 2 3. Hexen 4. Heretic 5. Stri';
 
 -- ---
 -- Table 'engines'
@@ -85,10 +85,10 @@ CREATE TABLE `doom_versions` (
 DROP TABLE IF EXISTS `engines`;
 		
 CREATE TABLE `engines` (
-  `id_engine` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `name` VARCHAR(128) NULL DEFAULT NULL,
-  `version` VARCHAR(128) NULL DEFAULT NULL,
-  PRIMARY KEY (`id_engine`)
+	`id_engine` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+	`name` VARCHAR(128) NULL DEFAULT NULL,
+	`version` VARCHAR(128) NULL DEFAULT NULL,
+	PRIMARY KEY (`id_engine`)
 ) COMMENT 'The different ports of doom to be used. Most likely Zandronu';
 
 -- ---
@@ -99,10 +99,10 @@ CREATE TABLE `engines` (
 DROP TABLE IF EXISTS `maps`;
 		
 CREATE TABLE `maps` (
-  `id_map` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `id_doom_version` INTEGER NULL DEFAULT NULL,
-  `name` VARCHAR(16) NULL DEFAULT NULL,
-  PRIMARY KEY (`id_map`)
+	`id_map` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+	`id_doom_version` INTEGER NULL DEFAULT NULL,
+	`name` VARCHAR(16) NULL DEFAULT NULL,
+	PRIMARY KEY (`id_map`)
 ) COMMENT 'The possible map names for the versions of doom. Exa Doom 2 ';
 
 -- ---
@@ -113,10 +113,10 @@ CREATE TABLE `maps` (
 DROP TABLE IF EXISTS `group`;
 		
 CREATE TABLE `group` (
-  `id_group` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `group_name` INTEGER NULL DEFAULT NULL,
-  `date_created` TIMESTAMP NOT NULL,
-  PRIMARY KEY (`id_group`)
+	`id_group` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+	`group_name` INTEGER NULL DEFAULT NULL,
+	`date_created` TIMESTAMP NOT NULL,
+	PRIMARY KEY (`id_group`)
 );
 
 -- ---
@@ -127,27 +127,19 @@ CREATE TABLE `group` (
 DROP TABLE IF EXISTS `group_members`;
 		
 CREATE TABLE `group_members` (
-  `id_user` INTEGER NULL DEFAULT NULL,
-  `id_group` INTEGER NULL DEFAULT NULL,
-  `date_joined` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  UNIQUE KEY (`id_group`, `id_user`)
-);
+	`id_user` INTEGER NULL DEFAULT NULL,
+	`id_group` INTEGER NULL DEFAULT NULL,
+	`date_joined` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	UNIQUE KEY (`id_group`, `id_user`)
 
--- ---
--- Table 'wad_instance'
--- The instance information from the wad being loaded into the engine
--- ---
-
-DROP TABLE IF EXISTS `wad_instance`;
-		
 CREATE TABLE `wad_instance` (
-  `id_wad_instance` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `id_group_started` INTEGER NULL DEFAULT NULL,
-  `id_wad` INTEGER NULL DEFAULT NULL,
-  `id_engine` INTEGER NULL DEFAULT NULL,
-  `date_run` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `difficulty` INTEGER NULL DEFAULT NULL,
-  PRIMARY KEY (`id_wad_instance`)
+	`id_wad_instance` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+	`id_group_started` INTEGER NULL DEFAULT NULL,
+	`id_wad` INTEGER NULL DEFAULT NULL,
+	`id_engine` INTEGER NULL DEFAULT NULL,
+	`date_run` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`difficulty` INTEGER NULL DEFAULT NULL,
+	PRIMARY KEY (`id_wad_instance`)
 ) COMMENT 'The instance information from the wad being loaded into the ';
 
 -- ---
@@ -158,8 +150,27 @@ CREATE TABLE `wad_instance` (
 DROP TABLE IF EXISTS `screenshots`;
 		
 CREATE TABLE `screenshots` (
-  `id_map` INTEGER NULL DEFAULT NULL,
-  UNIQUE KEY (`id_wad`, `id_map`)
+
+	`id_screenshot` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+	`id_wad_instance` INTEGER NULL DEFAULT NULL,
+	`id_user` INTEGER NULL DEFAULT NULL,
+	`filename` VARCHAR(256) NULL DEFAULT NULL,
+	`comment` MEDIUMTEXT NULL DEFAULT NULL,
+	PRIMARY KEY (`id_screenshot`)
+);
+
+-- ---
+-- Table 'wad_levels'
+-- Levels that the wad has as stated by players. Without looking into the wad manually there is no way to know what levels it uses.
+-- ---
+
+DROP TABLE IF EXISTS `wad_levels`;
+		
+CREATE TABLE `wad_levels` (
+	`id_wad` INTEGER NULL DEFAULT NULL,
+	
+	`id_map` INTEGER NULL DEFAULT NULL,
+	UNIQUE KEY (`id_wad`, `id_map`)
 ) COMMENT 'Levels that the wad has as stated by players. Without lookin';
 
 -- ---
@@ -170,10 +181,10 @@ CREATE TABLE `screenshots` (
 DROP TABLE IF EXISTS `wadset`;
 		
 CREATE TABLE `xwadset` (
-  `id_wadset` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `date_added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `name` VARCHAR(256) NULL DEFAULT NULL,
-  PRIMARY KEY (`id_wadset`)
+	`id_wadset` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+	`date_added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`name` VARCHAR(256) NULL DEFAULT NULL,
+	PRIMARY KEY (`id_wadset`)
 );
 
 -- ---
@@ -184,9 +195,9 @@ CREATE TABLE `xwadset` (
 DROP TABLE IF EXISTS `wad_in_set`;
 		
 CREATE TABLE `wad_in_set` (
-  `id_wadset` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `id_wad` INTEGER NULL DEFAULT NULL,
-  UNIQUE KEY (`id_wadset`, `id_wad`)
+	`id_wadset` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+	`id_wad` INTEGER NULL DEFAULT NULL,
+	UNIQUE KEY (`id_wadset`, `id_wad`)
 );
 
 -- ---
