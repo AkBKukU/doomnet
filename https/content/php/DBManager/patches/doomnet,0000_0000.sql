@@ -157,7 +157,7 @@ CREATE TABLE `wad_instance` (
 
 DROP TABLE IF EXISTS `screenshots`;
 		
-CREATE TABLE `screenshots` (x
+CREATE TABLE `screenshots` (
   `id_map` INTEGER NULL DEFAULT NULL,
   UNIQUE KEY (`id_wad`, `id_map`)
 ) COMMENT 'Levels that the wad has as stated by players. Without lookin';
