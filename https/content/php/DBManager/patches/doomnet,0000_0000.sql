@@ -110,9 +110,10 @@ CREATE TABLE `maps` (
 -- 
 -- ---
 
-DROP TABLE IF EXISTS `group`;
+
+DROP TABLE IF EXISTS `groups`;
 		
-CREATE TABLE `group` (
+CREATE TABLE `groups` (
 	`id_group` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
 	`group_name` INTEGER NULL DEFAULT NULL,
 	`date_created` TIMESTAMP NOT NULL,
@@ -131,7 +132,15 @@ CREATE TABLE `group_members` (
 	`id_group` INTEGER NULL DEFAULT NULL,
 	`date_joined` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	UNIQUE KEY (`id_group`, `id_user`)
+);
 
+-- ---
+-- Table 'wad_instance'
+-- The instance information from the wad being loaded into the engine
+-- ---
+
+DROP TABLE IF EXISTS `wad_instance`;
+		
 CREATE TABLE `wad_instance` (
 	`id_wad_instance` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
 	`id_group_started` INTEGER NULL DEFAULT NULL,
