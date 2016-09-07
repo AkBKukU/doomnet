@@ -70,7 +70,7 @@ echo $newdoc->saveXML($head);
 echo $newdoc->saveXML($body);
 
 
-	var_dump($WI->getWadsetWads(1));
+	var_dump($WI->addWad("atrium.wad"));
 // "Yep";
 ?>
 
