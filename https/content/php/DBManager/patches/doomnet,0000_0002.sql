@@ -9,8 +9,5 @@ Required: Yes
 \*                                                                           */
 
 DROP VIEW IF EXISTS wad_list;
-CREATE VIEW wad_list AS SELECT wads.wad_name,wads.date_added, (SELECT Count(*) FROM wads_played WHERE wads_played.id_wad = wads.id_wad ) as play_count,doom_versions.name from files JOIN mimetypes USING(id_mimetype) JOIN base_game USING (id_base_game)
+CREATE VIEW wad_list AS SELECT wads.id_wad, wads.wad_name,wads.date_added, (SELECT Count(*) FROM wads_played WHERE wads_played.id_wad = wads.id_wad ) as play_count,base_game.name from wads JOIN base_game USING(id_base_game);
 
-
-DROP VIEW IF EXISTS wad_info;
-CREATE VIEW wad_info AS SELECT wads.wad_name,wads.date_added,wads.txt,wads.md5,doom_versions.name from files JOIN mimetypes USING(id_mimetype) JOIN base_game USING (id_base_game)
