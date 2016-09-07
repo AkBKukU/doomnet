@@ -166,7 +166,9 @@ public function addWad($filename)
 	if($data)
 	{
 		// Wad is new
-		var_dump( $this->parseFile($wadContents));
+		$wadMaps = $this->parseFile($wadContents);
+		$txtfilename = str_ireplace(".wad", ".txt", $filename);
+		// if file exsists 
 
 	}
 
