@@ -180,7 +180,7 @@ END //
 -- Add
 DROP PROCEDURE IF EXISTS add_wad_level;
 
-CREATE PROCEDURE add_wadset_wad ( id_wadset_in INTEGER , id_wad_in INTEGER )
+CREATE PROCEDURE add_wad_level ( id_wadset_in INTEGER , id_wad_in INTEGER )
 BEGIN
 
 INSERT INTO wad_in_set ( id_wadset, id_wad ) VALUES
