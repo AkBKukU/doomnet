@@ -26,7 +26,7 @@ CREATE TABLE wads (
 	txt TEXT NULL DEFAULT NULL,
 	md5 VARCHAR(32) NULL DEFAULT NULL,
 	PRIMARY KEY (id_wad),
-	INDEX(iwad(1),
+	INDEX(iwad(1)),
 	KEY (id_base_game)
 ) COMMENT 'The files containing the levels to be played';
 
