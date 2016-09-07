@@ -212,7 +212,6 @@ CREATE TABLE wad_in_set (
 -- Foreign Keys 
 -- ---
 
-ALTER TABLE wads ADD FOREIGN KEY (id_wad) REFERENCES wad_in_set (id_wad);
 ALTER TABLE wads ADD FOREIGN KEY (id_doom_version) REFERENCES doom_versions (id_doom_version);
 ALTER TABLE wads_played ADD FOREIGN KEY (id_wad_instance) REFERENCES wad_instance (id_wad_instance);
 ALTER TABLE wads_played ADD FOREIGN KEY (id_user) REFERENCES users (id_user);
@@ -227,7 +226,8 @@ ALTER TABLE screenshots ADD FOREIGN KEY (id_wad_instance) REFERENCES wad_instanc
 ALTER TABLE screenshots ADD FOREIGN KEY (id_user) REFERENCES users (id_user);
 ALTER TABLE wad_levels ADD FOREIGN KEY (id_wad) REFERENCES wads (id_wad);
 ALTER TABLE wad_levels ADD FOREIGN KEY (id_map) REFERENCES maps (id_map);
-ALTER TABLE wadset ADD FOREIGN KEY (id_wadset) REFERENCES wad_in_set (id_wadset);
+ALTER TABLE wad_in_set ADD FOREIGN KEY (id_wadset) REFERENCES wadset (id_wadset) ;
+ALTER TABLE wad_in_set ADD FOREIGN KEY (id_wad) REFERENCES wads (id_wad);
 
 
 SET FOREIGN_KEY_CHECKS = 1;
