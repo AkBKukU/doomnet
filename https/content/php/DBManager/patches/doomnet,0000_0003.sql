@@ -178,9 +178,9 @@ WHERE id_wadset = id_wadset_in;
 END //
 
 -- Add
-DROP PROCEDURE IF EXISTS add_wad_level;
+DROP PROCEDURE IF EXISTS add_wadset_wad;
 
-CREATE PROCEDURE add_wad_level ( id_wadset_in INTEGER , id_wad_in INTEGER )
+CREATE PROCEDURE add_wadset_wad ( id_wadset_in INTEGER , id_wad_in INTEGER )
 BEGIN
 
 INSERT INTO wad_in_set ( id_wadset, id_wad ) VALUES
@@ -190,9 +190,9 @@ END //
 
 
 -- Delete
-DROP PROCEDURE IF EXISTS delete_wadset_wad;
+DROP PROCEDURE IF EXISTS delete_wad_level;
 
-CREATE PROCEDURE delete_wadset_wad ( id_wadset_in INTEGER , id_wad_in INTEGER )
+CREATE PROCEDURE delete_wadset_wadl ( id_wadset_in INTEGER , id_wad_in INTEGER )
 BEGIN
 
 DELETE FROM wad_in_set 
