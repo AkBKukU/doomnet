@@ -8,14 +8,11 @@ Required: Yes
 
 \*                                                                           */
 
-INSERT INTO doom_versions ( name ) VALUES 
+INSERT INTO base_game ( name ) VALUES 
 ( 'Doom' ),
-( 'Doom 2' ),
-( 'Heretic' ),
-( 'Hexen' ),
-( 'Strife' );
+( 'Doom 2' );
 
-INSERT INTO maps ( id_doom_version , name ) VALUES 
+INSERT INTO maps ( id_base_game , name ) VALUES 
 ( 1 , 'E1M1' ),
 ( 1 , 'E1M2' ),
 ( 1 , 'E1M3' ),

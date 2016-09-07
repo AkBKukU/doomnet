@@ -28,11 +28,11 @@ END;
  */
 DROP PROCEDURE IF EXISTS add_wad;
 
-CREATE PROCEDURE add_wad ( id_doom_version_in INTEGER , wad_name_in VARCHAR(256) , txt_in TEXT, md5_in VARCHAR(32) )
+CREATE PROCEDURE add_wad ( id_base_game_in INTEGER , wad_name_in VARCHAR(256) , txt_in TEXT, md5_in VARCHAR(32) )
 BEGIN
 
-INSERT INTO wads ( id_doom_version, wad_name, txt, md5 ) VALUES
-( id_doom_version_in, wad_name_in, txt_in, md5_in );
+INSERT INTO wads ( id_base_game, wad_name, txt, md5 ) VALUES
+( id_base_game_in, wad_name_in, txt_in, md5_in );
 
 END;
 
@@ -45,7 +45,7 @@ DROP PROCEDURE IF EXISTS add_user;
 CREATE PROCEDURE add_user ( username_in VARCHAR(32)  )
 BEGIN
 
-INSERT INTO wads ( id_doom_version, wad_name, txt, md5 ) VALUES
-( id_doom_version_in, wad_name_in, txt_in, md5_in );
+INSERT INTO wads ( id_base_game, wad_name, txt, md5 ) VALUES
+( id_base_game_in, wad_name_in, txt_in, md5_in );
 
 END;

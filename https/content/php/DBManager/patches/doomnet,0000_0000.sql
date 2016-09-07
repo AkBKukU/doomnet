@@ -19,13 +19,15 @@ DROP TABLE IF EXISTS wads;
 		
 CREATE TABLE wads (
 	id_wad INTEGER NOT NULL AUTO_INCREMENT,
-	id_doom_version INTEGER NOT NULL,
+	id_base_game INTEGER NOT NULL,
+	iwad TINYINT(1) UNSIGNED NOT NULL,
 	date_added TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	wad_name VARCHAR(256) NULL DEFAULT NULL,
 	txt TEXT NULL DEFAULT NULL,
 	md5 VARCHAR(32) NULL DEFAULT NULL,
 	PRIMARY KEY (id_wad),
-KEY (id_doom_version)
+	INDEX(iwad(1),
+	KEY (id_base_game)
 ) COMMENT 'The files containing the levels to be played';
 
 -- ---
@@ -65,17 +67,17 @@ CREATE TABLE wads_played (
 ) COMMENT 'Information provided by the user about the play session.';
 
 -- ---
--- Table 'doom_versions'
+-- Table 'base_game'
 -- Data will be:	1. Doom 2. Doom 2 3. Hexen 4. Heretic 5. Strife 6. Other
 -- ---
 
-DROP TABLE IF EXISTS doom_versions;
+DROP TABLE IF EXISTS base_game;
 		
-CREATE TABLE doom_versions (
-	id_doom_version INTEGER NOT NULL AUTO_INCREMENT,
+CREATE TABLE base_game (
+	id_base_game INTEGER NOT NULL AUTO_INCREMENT,
 	name VARCHAR(64) NULL DEFAULT NULL,
-	PRIMARY KEY (id_doom_version)
-) COMMENT 'Data will be:	1. Doom 2. Doom 2 3. Hexen 4. Heretic 5. Stri';
+	PRIMARY KEY (id_base_game)
+);
 
 -- ---
 -- Table 'engines'
@@ -83,11 +85,22 @@ CREATE TABLE doom_versions (
 -- ---
 
 DROP TABLE IF EXISTS engines;
-		
+
 CREATE TABLE engines (
 	id_engine INTEGER NOT NULL AUTO_INCREMENT,
 	name VARCHAR(128) NULL DEFAULT NULL,
-	version VARCHAR(128) NULL DEFAULT NULL,
+	version_name VARCHAR(128) NULL DEFAULT NULL,
+	version_order INTEGER NULL DEFAULT NULL,
+
+	param_launch VARCHAR(128) NULL DEFAULT NULL,
+	param_other VARCHAR(128) NULL DEFAULT NULL,
+	param_set_iwad VARCHAR(128) NULL DEFAULT NULL,
+	param_set_pwad VARCHAR(128) NULL DEFAULT NULL,
+	param_set_map VARCHAR(128) NULL DEFAULT NULL,
+
+	command_set_map VARCHAR(128) NULL DEFAULT NULL,
+	command_stop VARCHAR(128) NULL DEFAULT NULL,
+
 	PRIMARY KEY (id_engine)
 ) COMMENT 'The different ports of doom to be used. Most likely Zandronu';
 
@@ -100,7 +113,7 @@ DROP TABLE IF EXISTS maps;
 		
 CREATE TABLE maps (
 	id_map INTEGER NOT NULL AUTO_INCREMENT,
-	id_doom_version INTEGER NOT NULL,
+	id_base_game INTEGER NOT NULL,
 	name VARCHAR(16) NULL DEFAULT NULL,
 	PRIMARY KEY (id_map)
 ) COMMENT 'The possible map names for the versions of doom. Exa Doom 2 ';
@@ -212,11 +225,11 @@ CREATE TABLE wad_in_set (
 -- Foreign Keys 
 -- ---
 
-ALTER TABLE wads ADD FOREIGN KEY (id_doom_version) REFERENCES doom_versions (id_doom_version);
+ALTER TABLE wads ADD FOREIGN KEY (id_base_game) REFERENCES base_game (id_base_game);
 ALTER TABLE wads_played ADD FOREIGN KEY (id_wad_instance) REFERENCES wad_instance (id_wad_instance);
 ALTER TABLE wads_played ADD FOREIGN KEY (id_user) REFERENCES users (id_user);
 ALTER TABLE wads_played ADD FOREIGN KEY (id_wad) REFERENCES wads (id_wad);
-ALTER TABLE maps ADD FOREIGN KEY (id_doom_version) REFERENCES doom_versions (id_doom_version);
+ALTER TABLE maps ADD FOREIGN KEY (id_base_game) REFERENCES base_game (id_base_game);
 ALTER TABLE group_members ADD FOREIGN KEY (id_user) REFERENCES users (id_user);
 ALTER TABLE group_members ADD FOREIGN KEY (id_group) REFERENCES groups (id_group);
 ALTER TABLE wad_instance ADD FOREIGN KEY (id_group_started) REFERENCES groups (id_group);
