@@ -13,7 +13,7 @@ INSERT INTO doom_versions ( name ) VALUES
 ( "Doom 2" ),
 ( "Heretic" ),
 ( "Hexen" ),
-( "Strife" )
+( "Strife" );
 
 INSERT INTO doom_versions ( id_doom_version , name ) VALUES 
 ( 0 , "E1M1" ),
@@ -83,4 +83,4 @@ INSERT INTO doom_versions ( id_doom_version , name ) VALUES
 ( 1 , "MAP29" ),
 ( 1 , "MAP30" ),
 ( 1 , "MAP31" ),
-( 1 , "MAP32" )
+( 1 , "MAP32" );
