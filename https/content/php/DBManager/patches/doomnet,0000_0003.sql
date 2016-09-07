@@ -8,7 +8,7 @@ Required: Yes
                                                     
 \*                                                                           */
 
-DELIMITER //
+-- DELIMITER //
 
 
 -- Table 'wads'
@@ -22,7 +22,7 @@ BEGIN
 SELECT wads.id_wad, wads.date_added, wads.wad_name, wads.txt, wads.md5, wads.id_base_game,base_game.name AS base_game_name 
 FROM wads JOIN base_game USING(id_base_game) WHERE wads.id_wad = id_wad_in;
 
-END //
+END ;
 
 -- Add
 DROP PROCEDURE IF EXISTS add_wad;
@@ -33,7 +33,7 @@ BEGIN
 INSERT INTO wads ( id_base_game, iwad, wad_name, txt, md5 ) VALUES
 ( id_base_game_in, iwad_in,  wad_name_in, txt_in, md5_in );
 
-END //
+END ;
 
 -- Update
 DROP PROCEDURE IF EXISTS update_wad;
@@ -44,7 +44,7 @@ BEGIN
 UPDATE wads SET wads.wad_name = wad_name_in, wads.txt = txt_in, wads.id_base_game = id_base_game_in
 WHERE wads.id_wad = id_wad_in;
 
-END //
+END ;
 
 -- Delete
 DROP PROCEDURE IF EXISTS delete_wad;
@@ -55,7 +55,7 @@ BEGIN
 DELETE FROM wads
 WHERE wads.id_wad = id_wad_in;
 
-END //
+END ;
 
 -- Check MD5
 DROP PROCEDURE IF EXISTS check_wad_md5;
@@ -65,7 +65,7 @@ BEGIN
 
 SELECT Count(*) AS found FROM wads WHERE wads.md5 = md5_in;
 
-END //
+END ;
 
 
 
@@ -85,7 +85,7 @@ BEGIN
 SELECT wad_levels.id_map FROM wad_levels 
 WHERE id_wad = id_wad_in;
 
-END //
+END ;
 
 -- Add
 DROP PROCEDURE IF EXISTS add_wad_level;
@@ -96,7 +96,7 @@ BEGIN
 INSERT INTO wad_levels ( id_wad, id_map ) VALUES
 ( id_wad_in, id_map_in );
 
-END //
+END ;
 
 
 -- Delete
@@ -108,7 +108,7 @@ BEGIN
 DELETE FROM wad_levels 
 WHERE id_wad = id_wad_in AND id_map = id_map_in;
 
-END //
+END ;
 
 
 
@@ -124,7 +124,7 @@ BEGIN
 SELECT * FROM wadset
 WHERE id_wadset = id_wadset_in;
 
-END //
+END ;
 
 -- Add
 DROP PROCEDURE IF EXISTS add_wadset;
@@ -135,7 +135,7 @@ BEGIN
 INSERT INTO wadset ( name ) VALUES
 ( name_in );
 
-END //
+END ;
 
 
 -- Delete
@@ -147,7 +147,7 @@ BEGIN
 DELETE FROM wadset
 WHERE id_wadset = id_wadset_in;
 
-END //
+END ;
 
 
 -- Update
@@ -159,7 +159,7 @@ BEGIN
 UPDATE wadset SET name = name_in
 WHERE id_wadset = id_wadset_in;
 
-END //
+END ;
 
 
 
@@ -178,7 +178,7 @@ LEFT JOIN
 wad_list ON wad_in_set.id_wad = wad_list.id_wad
 WHERE id_wadset = id_wadset_in;
 
-END //
+END ;
 
 -- Add
 DROP PROCEDURE IF EXISTS add_wadset_wad;
@@ -189,7 +189,7 @@ BEGIN
 INSERT INTO wad_in_set ( id_wadset, id_wad ) VALUES
 ( id_wadset_in, id_wad_in );
 
-END //
+END ;
 
 
 -- Delete
@@ -201,10 +201,10 @@ BEGIN
 DELETE FROM wad_in_set 
 WHERE id_wad = id_wad_in AND id_wadset = id_wadset_in;
 
-END //
+END ;
 
 
 
 
 
-DELIMITER ;
+-- DELIMITER ;
