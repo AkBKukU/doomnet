@@ -7,6 +7,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
+require_once('content/php/class.WadInterface.php');
+
+$WI = new WadInterface();
+
 $newdoc = new DOMDocument;
 $newdoc->preserveWhiteSpace = false;
 $newdoc->formatOutput = true;
@@ -63,7 +67,10 @@ $div->appendChild($h2);
 
 
 echo $newdoc->saveXML($head);
-echo $newdoc->saveXML($body);
+echo $newdoc->saveXML($body);a
+
+
+	var_dump($WI->getWadsetWads(1));
 // "Yep";
 ?>
 
