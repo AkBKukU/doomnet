@@ -15,7 +15,7 @@ INSERT INTO doom_versions ( name ) VALUES
 ( 'Hexen' ),
 ( 'Strife' );
 
-INSERT INTO doom_versions ( id_doom_version , name ) VALUES 
+INSERT INTO maps ( id_doom_version , name ) VALUES 
 ( 0 , 'E1M1' ),
 ( 0 , 'E1M2' ),
 ( 0 , 'E1M3' ),
