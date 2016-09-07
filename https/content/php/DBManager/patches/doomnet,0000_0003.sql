@@ -63,7 +63,7 @@ DROP PROCEDURE IF EXISTS check_wad_md5;
 CREATE PROCEDURE check_wad_md5 ( md5_in VARCHAR(32) )
 BEGIN
 
-SELECT Count(*) AS found FROM wads_played WHERE wads.md5 = md5_in;
+SELECT Count(*) AS found FROM wads WHERE wads.md5 = md5_in;
 
 END //
 
