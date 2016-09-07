@@ -67,7 +67,7 @@ $div->appendChild($h2);
 
 
 echo $newdoc->saveXML($head);
-echo $newdoc->saveXML($body);a
+echo $newdoc->saveXML($body);
 
 
 	var_dump($WI->getWadsetWads(1));
