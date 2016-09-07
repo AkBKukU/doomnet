@@ -121,7 +121,7 @@ DROP PROCEDURE IF EXISTS get_wadset;
 CREATE PROCEDURE get_wadset ( id_wadset_in INTEGER )
 BEGIN
 
-SELECT FROM wadset
+SELECT * FROM wadset
 WHERE id_wadset = id_wadset_in;
 
 END //
