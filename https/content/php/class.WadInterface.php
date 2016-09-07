@@ -36,7 +36,13 @@ class WadInterface
 			$stmt->execute();
 			$result = $stmt->get_result();
 			$stmt->close();
-			return $result;
+			$data;
+			while ($myrow = $result->fetch_assoc()) 
+			{
+				$data[] = $myrow;
+			}
+
+			return $data;
 		}else{
 			echo $error;
 			return false;
