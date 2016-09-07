@@ -28,7 +28,7 @@ class WadInterface
 	
 	public function getWadsetWads($id_wadset)
 	{
-		$stmt = $this->mysqli->prepare("call get_id_wadset(?);");
+		$stmt = $this->mysqli->prepare("call get_wadset_wads(?);");
 		$error = $this->mysqli->error;
 		if($error == "")
 		{	
