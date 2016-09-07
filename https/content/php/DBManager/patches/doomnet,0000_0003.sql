@@ -172,7 +172,10 @@ DROP PROCEDURE IF EXISTS get_wadset_wads;
 CREATE PROCEDURE get_wadset_wads ( id_wadset_in INTEGER )
 BEGIN
 
-SELECT wad_in_set.id_wad FROM wad_in_set 
+SELECT wad_in_set.id_wad, wad_list.date_added, wad_list.play_count, wad_list.base_game_name
+FROM wad_in_set 
+LEFT JOIN 
+wad_list ON wad_in_set.id_wad = wad_list.id_wad
 WHERE id_wadset = id_wadset_in;
 
 END //
