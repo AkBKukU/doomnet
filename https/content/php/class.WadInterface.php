@@ -193,6 +193,32 @@ public function checkWad($filename)
 }
 
 
+public function getWadByMD5($md5)
+{
+	$stmt = $this->mysqli->prepare("call get_wad_by_md5(?);");
+	$error = $this->mysqli->error;
+	if($error == "")
+	{	
+		$stmt->bind_param("s", $md5);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$stmt->close();
+		$data;
+		while ($myrow = $result->fetch_assoc()) 
+		{
+			$data[] = $myrow;
+		}
+
+		return $data;
+	}else{
+		echo $error;
+		return false;
+	}
+	
+}
+
+
+
 private function parseFile($fileData)
 {																				
 	// Start map index at E1M1											   
