@@ -9,6 +9,9 @@ ini_set('display_errors', '1');
 
 require_once('content/php/class.WadInterface.php');
 
+$DBM = new DBManager('localhost','root','password');
+$DBM->displayPublicAlert("Go to Manager","dbmsettingstest.php");
+
 $WI = new WadInterface();
 
 $newdoc = new DOMDocument;
@@ -70,7 +73,7 @@ echo $newdoc->saveXML($head);
 echo $newdoc->saveXML($body);
 
 
-	var_dump($WI->addWad("atrium.wad"));
+	var_dump($WI->checkWad("atrium.wad"));
 // "Yep";
 ?>
 

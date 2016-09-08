@@ -197,7 +197,10 @@ class DBManager
 			}
 			echo '
 
-<link rel=StyleSheet href="content/classes/DBManager/dbmanager.css" type="text/css">
+				<link rel=StyleSheet href="content/classes/DBManager/dbmanager.css" type="text/css">
+				<style>
+			'.file_get_contents(__DIR__.'/dbmanager.css').'
+				</style>
 <div id="dbm_hideaway">
 	<p>DBManager: There '.$multi.' action</p>
 	<a href="'.$linkURL.'">'.$linkText.'</a>
@@ -209,7 +212,9 @@ class DBManager
 	public function getPatchForm()
 	{
 		echo '
-<link rel=StyleSheet href="content/classes/DBManager/dbmanager.css" type="text/css">
+				<style>
+			'.file_get_contents(__DIR__.'/dbmanager.css').'
+				</style>
 <form id="dbm_patchtable" method="post">
 		<header>
 			<h3> DB Manager</h3>

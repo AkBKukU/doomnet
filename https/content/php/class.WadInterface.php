@@ -127,14 +127,11 @@ public function getWadsetWads($id_wadset)
 }
 
 
-public function addWad($filename)
+public function checkWad($filename)
 {
-	$SUCCESS = 0;
-	$FAIL_UNKNOWN = 1;
-	$WAD_ALREADY_EXISTS = 0;
-
+	$wadData['wad_name'] = $filename;
 	$wadContents = file_get_contents($_SERVER["DOCUMENT_ROOT"].'/../wads/import/'.$filename);
-	$wadHash = md5($wadContents);
+	$wadData['md5'] = md5($wadContents);
 
 	
 	$data=false;
@@ -142,7 +139,7 @@ public function addWad($filename)
 	$error = $this->mysqli->error;
 	if($error == "")
 	{	
-		$stmt->bind_param("s", $wadHash);
+		$stmt->bind_param("s", $wadData['md5']);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		$stmt->close();
@@ -163,16 +160,39 @@ public function addWad($filename)
 		$data = false;
 	}
 
-	if($data)
+	if(!$data)
 	{
 		// Wad is new
-		$wadMaps = $this->parseFile($wadContents);
+		$wadData['exists'] = false;
+		$wadData['maps'] = $this->parseFile($wadContents);
+		$wadData['map_count'] = count($wadData['maps']);
+		if($wadData['map_count'])
+		{
+			if(strpos($wadData['maps'][0],'E') === 0)
+			{
+				$wadData['base_game'] = 1;
+			} else {
+				$wadData['base_game'] = 2;
+			}
+		}
+
 		$txtfilename = str_ireplace(".wad", ".txt", $filename);
-		// if file exsists 
+		$txtContents = "";
+		if(file_exists($txtfilename))
+		{
+			$txtContents = file_get_contents($txtfilename);
+		}
+
+		
+	} else {
+		$wadData['exists'] = true;
 
 	}
-
+	
+	return $wadData;
 }
+
+
 private function parseFile($fileData)
 {																				
 	// Start map index at E1M1											   
