@@ -6,7 +6,7 @@ class WadInterface
 {
 private $mysqli;
 private $stmt;
-
+private $wadDir;
 private $DOOM_START_INDEX = 0;
 private $DOOM2_START_INDEX = 36;
 
@@ -98,6 +98,7 @@ public function __construct()
 		echo "Error: Failed to connect to MySQL(" . $this->mysqli->connect_errno . ") " . $this->mysqli->connect_error;
 	}
 	
+	$this->wadDir = $_SERVER["DOCUMENT_ROOT"].'/../wads/import/';
 
 }
 
@@ -130,7 +131,7 @@ public function getWadsetWads($id_wadset)
 public function checkWad($filename)
 {
 	$wadData['wad_name'] = $filename;
-	$wadContents = file_get_contents($_SERVER["DOCUMENT_ROOT"].'/../wads/import/'.$filename);
+	$wadContents = file_get_contents($this->wadDir.$filename);
 	$wadData['md5'] = md5($wadContents);
 
 	
@@ -177,21 +178,49 @@ public function checkWad($filename)
 		}
 
 		$txtfilename = str_ireplace(".wad", ".txt", $filename);
-		$txtContents = "";
-		if(file_exists($txtfilename))
+		$wadData['txt']= "";
+		if(file_exists($this->wadDir.$txtfilename))
 		{
-			$txtContents = file_get_contents($txtfilename);
+			$wadData['txt'] = file_get_contents($this->wadDir.$txtfilename);
 		}
 
 		
 	} else {
 		$wadData['exists'] = true;
 
+		$foundWadInfo = $this->getWadByMD5($wadData['md5']);
+
+		$wadData['id_wad'] = $foundWadInfo[0]['id_wad'];
+		$wadData['base_game_name'] = $foundWadInfo[0]['base_game_name'];
+		$wadData['txt'] = $foundWadInfo[0]['txt'];
+
 	}
 	
 	return $wadData;
 }
 
+
+public function getImportWads()
+{
+	$wadfolder = new DirectoryIterator($this->wadDir);
+	foreach( $wadfolder as $entry )
+	{	
+		if ( ! $entry->isDot() ) 
+		{
+			if ( $entry->isFile() && strtoupper(pathinfo($entry->getFilename(), PATHINFO_EXTENSION)) == 'WAD' )
+			{
+				$wadlist[] = $entry->getFilename();
+			}
+		}
+	}
+
+	foreach($wadlist as $wad)
+	{
+		$wadInfo[] = $this->checkWad($wad);
+	}
+
+	return $wadInfo;
+}
 
 public function getWadByMD5($md5)
 {
@@ -218,13 +247,12 @@ public function getWadByMD5($md5)
 }
 
 
-
 private function parseFile($fileData)
 {																				
 	// Start map index at E1M1											   
 	$mapIndex = $this->DOOM_START_INDEX;								 
 	$isDoom1 = false; // Use to skip checking for doom 2 maps
-	$foundMaps;
+	$foundMaps = array();
 																			 
 	// Check for doom 1 first map											
 	if ( strpos($fileData,$this->mapList[$this->DOOM_START_INDEX]) !== false )

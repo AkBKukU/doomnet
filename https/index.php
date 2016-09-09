@@ -72,8 +72,7 @@ $div->appendChild($h2);
 echo $newdoc->saveXML($head);
 echo $newdoc->saveXML($body);
 
-
-	var_dump($WI->checkWad("atrium.wad"));
+var_dump($WI->getImportWads());
 // "Yep";
 ?>
 
